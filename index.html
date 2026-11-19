@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101525" />
+  <title>ООП: перші кроки — інтерактивний тренажер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#101525;--panel:#181f32;--panel2:#202941;--line:rgba(255,255,255,.09);--text:#f4f6ff;--muted:#a2abc1;--mint:#9bf0cf;--violet:#b8a5ff;--yellow:#f9d77e;--red:#ff8f9b}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 82% 4%,rgba(105,86,196,.2),transparent 33%),radial-gradient(ellipse at 4% 80%,rgba(57,133,126,.13),transparent 32%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}button{font:inherit;color:inherit}.shell{max-width:1180px;margin:auto;padding:28px 30px 48px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:42px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}.brand-icon{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,var(--mint),#81b5ff);display:grid;place-items:center;color:#142332;font-size:20px;box-shadow:0 6px 25px #83e9cc33}.top-note{font-size:13px;color:var(--muted);padding:9px 13px;border:1px solid var(--line);border-radius:100px}.hero{display:grid;grid-template-columns:1.04fr .96fr;gap:36px;align-items:center;margin-bottom:33px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--mint);font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:800}.eyebrow:before{content:'';width:22px;height:2px;background:var(--mint)}h1{font-family:Manrope,sans-serif;font-size:clamp(38px,5vw,62px);line-height:1.04;letter-spacing:-.065em;margin:17px 0 15px;max-width:600px}h1 span{color:var(--mint)}.intro{color:var(--muted);font-size:16px;line-height:1.7;max-width:525px;margin:0}.hero-visual{height:250px;position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#222b43,#151a2b 75%)}#scene{position:absolute;inset:0}.scene-caption{position:absolute;bottom:15px;left:17px;right:17px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}.scene-caption strong{font-size:13px}.scene-caption span{color:var(--muted);font-size:11px}.pill{font-size:11px;color:var(--mint);border:1px solid #9bf0cf44;background:#9bf0cf12;border-radius:99px;padding:6px 9px}.main-card{background:linear-gradient(145deg,rgba(26,34,54,.96),rgba(22,28,45,.96));border:1px solid var(--line);border-radius:22px;padding:25px 28px 24px;box-shadow:0 24px 70px #00000020}.card-top{display:flex;justify-content:space-between;align-items:center;gap:20px}.task-counter{font-size:13px;color:var(--muted)}.task-counter b{color:var(--text)}.score{font-size:12px;color:var(--mint);background:#9bf0cf12;border:1px solid #9bf0cf2b;border-radius:99px;padding:7px 11px}.progress{height:5px;background:#ffffff12;border-radius:99px;margin:17px 0 27px;overflow:hidden}.progress-fill{height:100%;width:20%;background:linear-gradient(90deg,var(--mint),#8cd4ff);border-radius:99px;transition:width .35s ease}.task-kicker{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);font-weight:800;margin-bottom:9px}.question{font-family:Manrope,sans-serif;font-size:23px;letter-spacing:-.035em;line-height:1.4;margin:0 0 7px}.task-hint{margin:0 0 19px;color:var(--muted);font-size:13px;line-height:1.55}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{min-height:61px;text-align:left;background:#ffffff07;border:1px solid var(--line);border-radius:13px;padding:13px 15px;cursor:pointer;transition:background .16s,border .16s,transform .16s;display:flex;align-items:center;gap:12px}.option:hover{background:#ffffff0d;border-color:#ffffff30;transform:translateY(-1px)}.option.selected{border-color:var(--mint);background:#9bf0cf12}.option.correct{border-color:#83dfac;background:#83dfac12}.option.incorrect{border-color:var(--red);background:#ff8f9b12}.option:disabled{cursor:default}.option-mark{width:27px;height:27px;flex:none;display:grid;place-items:center;border-radius:9px;background:#ffffff0d;color:var(--muted);font-size:11px;font-weight:700}.selected .option-mark{background:var(--mint);color:#142332}.option-text{font-size:13px;line-height:1.45}.feedback{min-height:21px;margin:15px 0 1px;color:var(--muted);font-size:13px;line-height:1.55}.feedback.good{color:var(--mint)}.feedback.bad{color:#ffabb2}.actions{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.task-dots{display:flex;gap:7px}.dot{width:7px;height:7px;border-radius:50%;background:#ffffff24}.dot.active{background:var(--mint);box-shadow:0 0 11px #9bf0cf77}.dot.done{background:#8c9bbb}.primary{border:0;border-radius:11px;padding:12px 19px;background:var(--mint);color:#15252b;font-size:13px;font-weight:800;cursor:pointer;transition:transform .15s,filter .15s}.primary:hover{transform:translateY(-1px);filter:brightness(1.05)}.primary:disabled{opacity:.42;cursor:not-allowed;transform:none}.primary .arrow{margin-left:11px;font-size:17px;vertical-align:-1px}.note{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:12px;margin:16px 3px 0}.note span{font-size:15px}.completion{text-align:center;padding:30px 10px 24px}.completion .big-check{width:64px;height:64px;margin:0 auto 17px;border-radius:22px;background:#9bf0cf18;color:var(--mint);display:grid;place-items:center;font-size:29px}.completion h2{font:800 30px Manrope,sans-serif;letter-spacing:-.05em;margin:0 0 9px}.completion p{color:var(--muted);line-height:1.6;max-width:430px;margin:0 auto 23px;font-size:14px}.completion .primary{margin:0 auto}.footer{display:flex;justify-content:space-between;color:#778198;font-size:11px;margin-top:19px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:760px){.shell{padding:20px 17px 35px}.topbar{margin-bottom:28px}.hero{grid-template-columns:1fr;gap:22px;margin-bottom:22px}.hero-visual{height:190px}h1{font-size:47px;margin-top:13px}.intro{font-size:14px}.main-card{padding:20px 17px}.question{font-size:20px}.options{grid-template-columns:1fr}.option{min-height:54px}.footer{gap:15px;flex-wrap:wrap}.top-note{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div class="brand"><div class="brand-icon" aria-hidden="true">{ }</div><span>Кодова майстерня</span></div><div class="top-note">Інформатика · 10 клас</div></header>
+    <section class="hero" aria-labelledby="page-title">
+      <div><div class="eyebrow">Перші кроки в програмуванні</div><h1 id="page-title">ООП — це <span>просто.</span></h1><p class="intro">Познайомся з об’єктно-орієнтованим програмуванням на прикладі знайомих речей. П’ять коротких завдань — і ти знаєш основи.</p></div>
+      <div class="hero-visual"><div id="scene" aria-label="Інтерактивна тривимірна модель робота"></div><div class="scene-caption"><div><strong>Наш навчальний робот</strong><br><span>Перетягни, щоб оглянути</span></div><div class="pill">3D · Three.js</div></div></div>
+    </section>
+    <section class="main-card" aria-label="Тренажер з основ ООП">
+      <div id="quiz"></div>
+    </section>
+    <div class="note"><span aria-hidden="true">✦</span> Основний рівень · Без попереднього досвіду · Приблизно 5 хвилин</div>
+    <footer class="footer"><span>Навчальний тренажер з основ ООП</span><span>Крути 3D-модель мишкою або пальцем ↗</span></footer>
+  </main>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const tasks = [
+  {topic:'Клас і об’єкт',question:'Уяви креслення робота. Що в ООП найкраще відповідає такому кресленню?',hint:'Креслення описує, якими можуть бути роботи, але саме по собі не є роботом.',options:['Клас — опис або шаблон для створення об’єктів','Метод — окрема властивість робота','Змінна — готова програма','Об’єкт — правило написання коду'],answer:0,explain:'Так! Клас — це шаблон, за яким можна створити об’єкти.'},
+  {topic:'Властивості',question:'Робот має ім’я «Робік» і заряд батареї 80%. Як називають такі дані об’єкта?',hint:'Це характеристики, значення яких можуть відрізнятися в різних роботів.',options:['Властивості','Методи','Класи','Коментарі'],answer:0,explain:'Саме так: ім’я та заряд — властивості, тобто дані об’єкта.'},
+  {topic:'Методи',question:'Робот уміє рухатися вперед. Як у програмі назвати дію, яку може виконати об’єкт?',hint:'Це не дані робота, а те, що він уміє робити.',options:['Метод','Властивість','Клас','Значення'],answer:0,explain:'Вірно! Метод описує дію або поведінку об’єкта.'},
+  {topic:'Створюємо об’єкти',question:'Є клас «Робот». Ми створили двох роботів: Робіка й Біпа. Що таке Робік?',hint:'Згадай різницю між кресленням і річчю, зробленою за ним.',options:['Об’єкт (екземпляр) класу «Робот»','Ще одна назва методу','Властивість класу','Команда для створення класу'],answer:0,explain:'Правильно: Робік — окремий об’єкт, створений за шаблоном класу «Робот».'},
+  {topic:'Перевір себе',question:'Обери всі властивості класу «Ліхтарик».',hint:'Властивість — це характеристика чи стан, а метод — дія. Обери два варіанти.',options:['Колір корпусу','Увімкнути світло()','Рівень заряду','Блимати()'],answers:[0,2],multi:true,explain:'Чудово! Колір і заряд — дані-властивості. Увімкнути й блимати — методи, тобто дії.'}
+];
+let current=0, selected=null, completed=new Set(), locked=false;
+const quiz=document.querySelector('#quiz');
+function render(){
+  if(current>=tasks.length){
+    const score=completed.size;
+    quiz.innerHTML=`<div class="completion"><div class="big-check">✓</div><h2>Чудова робота!</h2><p>Ти пройшов усі п’ять завдань і познайомився з класами, об’єктами, властивостями та методами.</p><div class="score" style="display:inline-block;margin-bottom:20px">Правильних відповідей: ${score} з 5</div><br><button class="primary" id="restart">Спробувати ще раз <span class="arrow">↻</span></button></div>`;
+    document.querySelector('#restart').addEventListener('click',()=>{current=0;selected=null;completed.clear();render();});return;
+  }
+  const t=tasks[current];selected=t.multi?new Set():null;locked=false;
+  const dots=tasks.map((_,i)=>`<span class="dot ${i===current?'active':i<current?'done':''}"></span>`).join('');
+  quiz.innerHTML=`<div class="card-top"><div class="task-counter">Завдання <b>${current+1}</b> з ${tasks.length}</div><div class="score">${completed.size} / ${tasks.length} виконано</div></div><div class="progress" role="progressbar" aria-label="Прогрес проходження" aria-valuenow="${current+1}" aria-valuemin="0" aria-valuemax="${tasks.length}"><div class="progress-fill" style="width:${(current+1)/tasks.length*100}%"></div></div><div class="task-kicker">${t.topic}</div><h2 class="question">${t.question}</h2><p class="task-hint">${t.hint}</p><div class="options" role="${t.multi?'group':'radiogroup'}" aria-label="Варіанти відповіді">${t.options.map((o,i)=>`<button class="option" data-index="${i}" aria-pressed="false"><span class="option-mark">${String.fromCharCode(65+i)}</span><span class="option-text">${o}</span></button>`).join('')}</div><div class="feedback" id="feedback" aria-live="polite">${t.multi?'Обери два варіанти відповіді.':''}</div><div class="actions"><div class="task-dots" aria-label="Номер завдання">${dots}</div><button class="primary" id="check" disabled>${t.multi?'Перевірити':'Перевірити відповідь'} <span class="arrow">→</span></button></div>`;
+  quiz.querySelectorAll('.option').forEach(button=>button.addEventListener('click',()=>choose(Number(button.dataset.index))));
+  document.querySelector('#check').addEventListener('click',check);
+}
+function choose(index){if(locked)return;const t=tasks[current];const button=quiz.querySelector(`[data-index="${index}"]`);
+  if(t.multi){if(selected.has(index)){selected.delete(index);button.classList.remove('selected');button.setAttribute('aria-pressed','false')}else{if(selected.size>=2)return;selected.add(index);button.classList.add('selected');button.setAttribute('aria-pressed','true')}document.querySelector('#check').disabled=selected.size!==2;}
+  else{selected=index;quiz.querySelectorAll('.option').forEach(el=>{el.classList.toggle('selected',el===button);el.setAttribute('aria-pressed',String(el===button))});document.querySelector('#check').disabled=false;}
+}
+function check(){if(locked)return;const t=tasks[current];const expected=t.multi?t.answers:[t.answer];const picked=t.multi?[...selected]:[selected];const correct=picked.length===expected.length&&picked.every(i=>expected.includes(i));locked=true;
+  quiz.querySelectorAll('.option').forEach((el,i)=>{el.disabled=true;if(expected.includes(i))el.classList.add('correct');else if(picked.includes(i))el.classList.add('incorrect')});
+  const feedback=document.querySelector('#feedback');feedback.className=`feedback ${correct?'good':'bad'}`;feedback.textContent=`${correct?'✓ Правильно! ':'↻ Не зовсім. '}${t.explain}`;
+  if(correct)completed.add(current);
+  const button=document.querySelector('#check');button.disabled=false;button.innerHTML=`${current===tasks.length-1?'Завершити':'Наступне завдання'} <span class="arrow">→</span>`;button.onclick=()=>{current++;render()};
+}
+render();
+
+// A small, drag-to-orbit Three.js robot built from simple shapes.
+const mount=document.querySelector('#scene');
+const scene=new THREE.Scene();scene.background=new THREE.Color('#202941');
+const camera=new THREE.PerspectiveCamera(34,mount.clientWidth/mount.clientHeight,.1,100);camera.position.set(4.5,3.2,7.8);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setSize(mount.clientWidth,mount.clientHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;mount.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.enablePan=false;controls.minDistance=5;controls.maxDistance=11;controls.minPolarAngle=.65;controls.maxPolarAngle=1.8;
+scene.add(new THREE.HemisphereLight('#dceaff','#39405b',2.2));const key=new THREE.DirectionalLight('#fff0d6',3.3);key.position.set(4,6,5);key.castShadow=true;scene.add(key);const rim=new THREE.PointLight('#9bf0cf',35,10);rim.position.set(-3,2,2);scene.add(rim);
+const floor=new THREE.Mesh(new THREE.CircleGeometry(5,64),new THREE.MeshStandardMaterial({color:'#29334c',roughness:.88}));floor.rotation.x=-Math.PI/2;floor.position.y=-1.05;floor.receiveShadow=true;scene.add(floor);
+const grid=new THREE.GridHelper(10,20,'#56617a','#3b455d');grid.position.y=-1.035;grid.material.transparent=true;grid.material.opacity=.35;scene.add(grid);
+const robot=new THREE.Group();scene.add(robot);
+const mint=new THREE.MeshStandardMaterial({color:'#83e7c4',metalness:.22,roughness:.3});const dark=new THREE.MeshStandardMaterial({color:'#37435d',metalness:.35,roughness:.32});const face=new THREE.MeshStandardMaterial({color:'#172033',metalness:.15,roughness:.25});const gold=new THREE.MeshStandardMaterial({color:'#f9d77e',metalness:.35,roughness:.3});
+function box(w,h,d,mat,x,y,z,r=0){const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);mesh.position.set(x,y,z);mesh.rotation.y=r;mesh.castShadow=true;mesh.receiveShadow=true;robot.add(mesh);return mesh}
+function sphere(radius,mat,x,y,z,sx=1,sy=1,sz=1){const mesh=new THREE.Mesh(new THREE.SphereGeometry(radius,32,24),mat);mesh.position.set(x,y,z);mesh.scale.set(sx,sy,sz);mesh.castShadow=true;robot.add(mesh);return mesh}
+box(1.45,1.3,.85,mint,0,.05,0,.08);box(1.55,.18,.93,dark,0,-.7,0);box(.78,.68,.72,mint,0,1.08,0,.02);box(.86,.17,.77,dark,0,.69,0);
+for(const x of [-.22,.22]){sphere(.085,gold,x,1.16,.365,.85,1,.4);sphere(.028,face,x,1.16,.399,.9,1,.5)}
+box(.16,.09,.07,face,0,.91,.39);box(.3,.08,.08,gold,0,.85,.39);
+for(const x of [-.88,.88]){const arm=box(.23,.82,.25,dark,x,.06,0,x<0?-.3:.3);sphere(.18,mint,x,-.39,.02)}
+for(const x of [-.43,.43]){box(.38,.28,.4,dark,x,-.88,0);box(.42,.12,.43,gold,x,-1.03,.03)}
+box(.35,.25,.13,gold,0,-.02,.45,.05);
+// Floating decorative cubes reinforce the 3D classroom scene.
+for(let i=0;i<5;i++){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(.1+i%2*.035,0),i%2?gold:mint);m.position.set((i-2)*.75,.45+Math.sin(i*2)*.45,-1.25-Math.cos(i)*.45);m.castShadow=true;scene.add(m);}
+const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();robot.position.y=Math.sin(t*1.35)*.045;robot.rotation.y=Math.sin(t*.38)*.06;controls.update();renderer.render(scene,camera)}animate();
+const resizeObserver=new ResizeObserver(()=>{const w=mount.clientWidth,h=mount.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)});resizeObserver.observe(mount);
+</script>
+</body>
+</html>
